@@ -26,3 +26,8 @@ def checkview(request):
         newroom = Room.objects.create(name=roomname)
         newroom.save()
         return redirect("/" + roomname + "/?username=" + username)
+    
+    
+def send(request):
+    pass
+    
