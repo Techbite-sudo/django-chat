@@ -38,4 +38,19 @@ def send(request):
     newmessage.save()
     return HttpResponse("Message sent successfully")
 
+def getMessages(request, roomname):
+    room_details = Room.objects.get(name=roomname)
+    messages = Message.objects.filter(roomid=room_details.id)
+    return JsonResponse({"messages":list(messages.values())})
+
+    # room_id = Room.objects.get(name=roomname).id
+    # messages = Message.objects.filter(room=room_id)
+    # messages_list = []
+    # for message in messages:
+    #     messages_list.append({
+    #         "value": message.value,
+    #         "user": message.user,
+    #         "date": message.date
+    #     })
+    # return JsonResponse(messages_list, safe=False)
     
